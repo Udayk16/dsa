@@ -1,0 +1,73 @@
+#include<iostream>
+using namespace std;
+class node{
+    public:
+    int val;
+    node* next;
+    node(int val){
+        this->val=val;
+        this->next=nullptr;
+    }
+};
+node* ll(node* head,int val){
+    if(head==nullptr) return new node(val);
+    node* temp=head;
+    while(temp->next!=nullptr){
+        temp=temp->next;
+    }
+    node* new_=new node(val);
+    temp->next=new_;
+    return head;
+}
+node* kNodeReversal(node* &head,int k){
+    if(head==nullptr || k<=0)return nullptr;
+
+
+    node* prev=nullptr;
+    node* current=head;
+    node* temp=nullptr;
+    int count=0;
+    node* new_head=nullptr;
+    
+    
+    while(current!=nullptr && count<k){
+        temp=current->next;
+        current->next=prev;
+        prev=current;
+        current=temp;
+        count++;
+    }
+    if(temp!=nullptr){
+    new_head=kNodeReversal(temp,k);
+    head->next=new_head;
+    }
+    return prev;
+}
+
+
+void display(node* head){
+        node* temp=head;
+        while(temp!=nullptr){
+            cout<<temp->val<<"-->";
+            temp=temp->next;
+        }
+        cout<<"null\n";
+}
+int main(){
+    node* head=nullptr;
+    head=ll(head,1);
+    head=ll(head,2);
+    head=ll(head,3);
+    head=ll(head,4);
+    head=ll(head,5);
+    display(head);
+    head=kNodeReversal(head,2);
+    display(head);
+
+
+    return 0;
+}
+
+output
+1-->2-->3-->4-->5-->null
+2-->1-->4-->3-->5-->null
