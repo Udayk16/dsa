@@ -1,0 +1,68 @@
+#include<iostream>
+using namespace std;
+class node{
+    public:
+    int val;
+    node* next;
+    node(int val){
+        this->val=val;
+        this->next=nullptr;
+    }
+};
+node* ll(node* head,int val){
+    if(head==nullptr){
+        return (new node(val));
+    }
+    node*temp=head;
+    while(temp->next!=nullptr){
+        temp=temp->next;
+    }
+    temp->next= new node(val);
+    return head;
+}
+
+void display(node* head){
+    node* temp=head;
+    while(temp!=nullptr){
+        cout<<temp->val<<"-->";
+        temp=temp->next;
+    }
+    cout<<"null\n";
+}
+node* reversell(node* &head){
+    node* prev=nullptr;
+    node* temp=nullptr;
+    node* current=head;
+    while(current!=nullptr){
+        temp=current->next;
+        current->next=prev;
+        prev=current;
+        current=temp;
+    }
+    head=prev;
+    return head;
+}
+int main(){
+    node* head=nullptr;
+    head=ll(head,1);
+    head=ll(head,2);
+    head=ll(head,3);
+    head=ll(head,4);
+    head=ll(head,5);
+    display(head);
+    head=reversell(head);
+    display(head);
+    while(head){
+        node* temp=head;
+        head=head->next;
+        delete(temp);
+    }
+    
+}
+
+
+
+
+output
+1-->2-->3-->4-->5-->null
+5-->4-->3-->2-->1-->null
