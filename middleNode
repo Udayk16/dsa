@@ -1,0 +1,63 @@
+#include<iostream>
+using namespace std;
+class node{
+    public:
+    int val;
+    node* next;
+    node(int val){
+        this->next=nullptr;
+        this->val=val;
+    }
+};
+class linkedlist{
+    public:
+    node* head;
+    linkedlist(){
+        head=nullptr;
+    }
+    void insert(int val){
+        node* new_=new node(val);
+        if (head==nullptr){
+            head=new_;
+            return;
+        }
+        node* temp=head;
+        while(temp->next!=nullptr){
+            temp=temp->next;
+        }
+        temp->next=new_;
+        return;
+    }
+      void display()
+    {
+        node* temp=head;
+        while(temp!=nullptr){
+            cout<<temp->val<<"-->";
+            temp=temp->next;
+        }
+        cout<<"null\n";
+    }
+};
+node* mid(node* head){
+    node* ptr1=head;
+    node* ptr2=head;
+    while(ptr2!= nullptr && ptr2->next!=nullptr){
+        ptr1=ptr1->next;
+        ptr2=ptr2->next->next;
+    }
+    return ptr1;
+}
+int main(){
+    linkedlist ll1;
+    ll1.insert(1);
+    ll1.insert(2);
+    ll1.insert(3);
+    ll1.insert(4);
+    ll1.insert(5);
+    ll1.insert(6);
+    ll1.insert(7);
+    ll1.display();
+    node* middle= mid(ll1.head);
+    cout<<"middle value:  "<<middle->val;
+    
+}
