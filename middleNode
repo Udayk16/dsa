@@ -61,3 +61,7 @@ int main(){
     cout<<"middle value:  "<<middle->val;
     
 }
+
+output
+1-->2-->3-->4-->5-->6-->7-->null
+middle value:  4
