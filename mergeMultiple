@@ -1,0 +1,105 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+class node{
+    public:
+    int val;
+    node* next;
+    node(int val){
+        this->val=val;
+        this->next=0;
+    }
+};
+class linkedlist{
+	public:
+	node* head;
+	linkedlist(){
+		head=0;
+	}
+	void insert(int val){
+		node* new_=new node(val);
+		if (head==0){
+			head=new node(val);
+		}
+		else{
+		node* temp=head;
+		while(temp->next!=0){
+			temp=temp->next;
+		}
+		temp->next=new_;
+	}
+	}
+	void display(){
+    node* temp=head;
+    while(temp!=0){
+        cout<<temp->val<<"-->";
+        temp=temp->next;
+    }
+    cout<<"null"<<endl;
+	}
+	
+void deleteall(){
+	while(head!=0){
+        node *temp=head;
+        head=head->next;
+        delete(temp);
+     }
+ }
+};
+node* merge(vector<node*> &heads){
+	if(heads.size()==0){
+		return 0;
+	}
+	while(head.size()>1){
+		node* merged=mergesort(heads[0],heads[1]);
+		heads.push_back(merged);
+		heads.erase(heads.begin());
+		heads.erase(heads.begin());	
+	}
+	return heads[0];
+}
+node* mergesort(node* head1,node* head2){
+	node* dum= new node(0);
+	node* ptr1=head1;
+	node* ptr2=head;
+	node* ptr3=dum;
+	while(ptr1->next!=0 && ptr2->next!=0){
+		if(ptr1->val<ptr2->val){
+			ptr3->next=ptr1;
+			ptr1=ptr1->next;
+		}
+		else{
+			ptr3->next=ptr2
+			ptr2=ptr3->next;
+		}
+	}
+}
+
+int main()
+{
+    linkedlist ll1;
+    ll1.insert(1);
+    ll1.insert(4);
+    ll1.insert(5);
+    ll1.display();
+	
+	linkedlist ll2;
+	ll2.insert(2);
+	ll2.insert(3);
+	ll2.display();
+	
+	linkedlist ll3;
+	ll3.insert(7);
+	ll3.insert(8);
+	ll3.display();
+	
+	vector<node*> heads;
+	heads.push_back(ll1.head);
+	heads.push_back(ll2.head);
+	heads.push_back(ll13.head);
+	
+	linkedlist merged;
+	merged.head=merge(head); 	
+	merged.display();
+	    return 0;
+}
